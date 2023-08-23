@@ -1,0 +1,71 @@
+{% extends 'seapp/base.html' %}
+
+
+{% load static %}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+
+{% block container %}
+<br>
+<br>
+<br>
+<div class="card">
+    <div class="card-body">
+        <br><br>
+        <h2>Listado Candidatos</h2>
+        <br>
+        <!--Barra de Busqueda en el Listado-->
+        
+
+        <table class="table table-responsive">
+            <thead class="thead-dark " style="background: #24527A; color:#fff;" >
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>Profesión</th>
+                    <th>Telefono</th>
+                    <th>Ver Perfil</th>
+                </tr>
+            </thead>
+
+            {% for p in entity %}
+    
+            <tr>
+                
+            </tr>
+            <tr>
+                <td>{{p.nombre | title }}</td>
+                <td>{{p.apellido | title }}</td>
+                <td>{{p.email | title }}</td>
+                <td>{{p.carreras.carrera | title }}</td>
+                <td>{{p.telefono | title }}</td>
+                <td>
+                    <a href="#" class="btn btn-outline-success btn-sm" style="background: #24527A; color:#fff; border:none;"><i class="bi bi-file-earmark-font">Ver</i></a>
+                    {% if user.username == "Adminservempleo" %}
+                    <a href="#" class="btn btn-outline-success btn-sm" style="background: #24527A; color:#fff; border:none;"><i class="bi bi-file-earmark-font">Eliminar</i></a>
+                    {% endif %}
+                    
+                </td>
+            </tr>
+            
+            {% endfor %}
+    
+            
+        </table>
+
+
+
+        <div class="card-body">
+            {% include 'seapp/paginator.html' %}
+        </div>
+    </div>
+
+</div>
+
+    
+<script href="{% static 'seapp/js/bootstrap.min.js"></script>
+<script href="{% static 'seapp/js/jquery.min.js"></script>
+
+{% endblock %}
+

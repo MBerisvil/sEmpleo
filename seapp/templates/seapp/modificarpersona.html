@@ -1,0 +1,42 @@
+{% extends 'seapp/base.html' %}
+
+
+
+
+{% block container %}
+
+{% load crispy_forms_tags %}
+
+    <br><br>
+
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3 overflow-auto">
+                <div class="card">
+                    <div class="car-body">
+                        <h2>Modificar Datos Personales</h2>
+                        <hr>
+                        <form action="" method="post" enctype="multipart/form-data">
+
+                            {% csrf_token %}
+
+                            {{ form | crispy }}
+
+                            <div class="d-flex justify-content-end">
+                                <input type="rest" value="Cancelar" class="btn btn-secondary">
+                                &nbsp;
+                                <input type="submit" value="Editar" class="btn btn-primary">
+                            </div>
+
+                        </form>
+    <!--Imprimo Mensaje-->
+     {{ messages }}
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+{% endblock container %}
+    

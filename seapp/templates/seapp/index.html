@@ -1,0 +1,58 @@
+{% extends 'seapp/base.html' %}
+
+{% load static %}
+
+{% block js %}
+    
+
+{% endblock %}
+    
+ 
+{% block container %}
+
+  <!--<div class="card text-center">
+        <h5 class="card-header">Servicio Empleos </h5>
+        <div class="card-body">
+          <p class="card-text">El sistio web indicado para que las empresas te encuentren.</p>
+          <a href="{% url 'login'%}" class="btn btn-primary">Ingresar</a>
+        </div>
+  </div>-->
+
+<!-- Full Page Image Header with Vertically Centered Content -->
+<header class="masthead" style=" height: 100vh; min-height: 500px; background-size: cover; 
+  background-position: center; background-repeat: no-repeat;" >
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-12 text-center">
+        <h1 class="fw-light" href="{% url 'index.html' %}">Servicio de Empleos</h1>
+        <p class="lead">El sitio Web para que las empresas conoscan tu perfil profesional</p>
+      </div>
+      <!-- Page Content -->
+      {% if user.is_authenticated %}
+
+      <p>Hola {{ user.last_name }}, {{ user.first_name }}, nos pone contentos que estes aquí.</p>
+
+      {% else %}
+
+      <div class="container">
+        <h2 class="fw-light"><a href="{% url 'login'%}" class="btn btn-primary" style="background: #24527A; border: none;">Ingresar</a></h2>
+        {% endif %}
+      
+      </div>  
+    </div>
+  </div>
+
+</header>
+
+<!-- Page Content 
+<section class="py-5">
+  <div class="container">
+    <h2 class="fw-light"><a href="{% url 'login'%}" class="btn btn-primary">Ingresar</a></h2>
+    <p>AGREGAR UNA DESCRIPCIÓN</p>
+  </div>
+</section>-->
+
+  
+
+{% endblock %}
+    

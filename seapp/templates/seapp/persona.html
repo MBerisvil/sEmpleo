@@ -1,0 +1,243 @@
+{% extends 'seapp/base.html' %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'seapp\css\bootstrap.min.css'%}">
+<link rel="stylesheet" href="{% static 'seapp\css\persona.css'%}">
+
+
+{% block container %}
+
+{% load crispy_forms_tags %}
+<br>
+
+
+<!--<div class="row ">
+    <div class="col-12 col-md-6 offset-md-3 overflow-auto"> 
+        <div class="card">
+            <div class="card-body">
+                <h2>Candidato / Empresa </h2>      
+                <form action="" class="formpersona" method="post" enctype="multipart/from-data">
+
+                    <!--Token de seguridad--
+                    {% csrf_token %}
+
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="profile-img">
+                                <img src="{% static 'seapp\img\favicon.png' %}" alt=""/>
+                                <div class="file btn btn-lg btn-primary">
+                                    Cambiar foto
+                                    <input type="file" name="file"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 form-group mb-7" id="div_id_nombre">
+                            <label for="id_nombre" class='from-label requireField'>Nombre Completo*</label>
+                            <input type="text" class="textinput form-control" name="nombre" maxlength="100" required id="id_name" placeholder="Nombre completo">
+                        </div>
+                        <div class="col-md-8 form-group mb-7" id="div_id_apellido">
+                            <label for="id_apellido" class='from-label requireField'>Apellido*</label>
+                            <input type="text" class="textinput form-control" name="apellido" maxlength="100" required id="id_apellido" placeholder="Apellido">
+                        </div>
+                        <div class="col-md-8 form-group mb-7" id="div_id_dni">
+                            <label for="id_dni" class='from-label requireField'>Apellido*</label>
+                            <input type="text" class="textinput form-control" name="dni" maxlength="20" required id="id_dni" placeholder="Documento Nacional">
+                        </div>
+                        <div class="col-md-8 form-group mb-7" id="div_id_email">
+                            <label for="id_email" class='from-label requireField'>Email*</label>
+                            <input type="text" class="textinput form-control" name="email" maxlength="120" required id="id_email" placeholder="ejemplo@sempleo.com">
+                        </div>
+                        <div class="col-md-8 form-group mb-7" id="div_id_telefono">
+                            <label for="id_telefono" class='from-label requireField'>telefono*</label>
+                            <input type="text" class="textinput form-control" name="telefono" maxlength="20" required id="id_telefono" placeholder="Teléfono">
+                        </div>
+                        <div class="col-md-8 form-group mb-7" id="div_id_dirección">
+                            <label for="id_direccion" class='from-label requireField'>Dirección*</label>
+                            <input type="text" class="textinput form-control" name="direccion" maxlength="202" required id="id_direccion" placeholder="Dirección">
+                        </div>
+                        <div class="col-md-8 form-group mb-7" id="div_id_fecha_nacimiento">
+                            <label for="id_fecha_nacimiento" class='from-label requireField'>Fecha de nacimiento</label>
+                            <input type="date" class="dateinput form-control" name="fecha_nacimiento" maxlength="100" required id="id_fecha_nacimiento">
+                        </div>
+                        <div class="col-md-8 form-group mb-7" id="div_id_sexo">
+                            <label for="id_sexo" class='from-label requireField'>Sexo*</label>
+                            <select name="sexo" class="select form-select" required="" id="id_sexo"> 
+                                <option value="" selected="">---------</option> 
+                                <option value="1">Masculino</option> 
+                                <option value="2">Femenino</option> 
+                                <option value="3">Otro</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <br>
+                    <div class='d-flex justify-content-end'>
+                    <button type="submit" id="btnCancelar" class="btn btn-secondary">Cancelar</button>
+                        &nbsp;
+                    <button type="submit" id="btnGuardar" class="btn btn-primary">Guardar</button>
+                    </div>  
+                </form>
+            </div>
+        </div>
+    </div>
+</div>-->
+
+<!--*************************************************************************************-->
+
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                <img class="rounded-circle mt-5 avatar img-circle img-thumbnail" width="150px" src="{% static 'seapp\img\logo.png' %}" alt="avatar"><br>
+                <h4><span class="font-weight-bold">{{user.first_name}} {{user.last_name}}</span></h4>
+                <!--<span class="text-black-50">{{user.username}}</span>-->
+                <div class="container bootstrap snippet">
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Perfil candidato</h4>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                        <label class="labels">Nombre</label>
+                        <input type="text" class="textinput form-control" name="nombre" maxlength="100" required id="id_name" placeholder="{{user.first_name}}">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="labels">Apellido</label>
+                        <input type="text" class="textinput form-control" name="apellido" maxlength="100" required id="id_apellido" placeholder="{{user.last_name}}">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label class="labels">N° documento</label>
+                        <input type="text" class="textinput form-control" name="dni" maxlength="20" required id="id_dni" placeholder="Documento Nacional"><br>
+                    </div>
+                    <br>
+                    <div class="col-md-12">
+                        <label class="labels">Fecha Nacimiento</label>
+                        <input type="date" class="dateinput form-control" name="fecha_nacimiento" maxlength="100" required id="id_fecha_nacimiento">
+                        <br>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="id_sexo" class='from-label requireField'>Sexo</label>
+                            <select name="sexo" class="select form-select" required="" id="id_sexo"> 
+                                <option value="" selected="">---------</option> 
+                                <option value="1">Masculino</option> 
+                                <option value="2">Femenino</option> 
+                                <option value="3">Otro</option>
+                            </select>
+                        <br>
+                    </div>
+                    <div class="col-md-12">
+                        <label class="labels">Tel/Cel</label>
+                        <input type="text" class="textinput form-control" name="telefono" maxlength="20" required id="id_telefono" placeholder="Teléfono"><br>
+                    </div>
+                    <div class="col-md-12">
+                        <label class="labels">Email</label>
+                        <input type="text" class="textinput form-control" name="email" maxlength="120" required id="id_email" placeholder="{{user.username}}"><br>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label class="labels">Dirección</label>
+                            <input type="text" class="textinput form-control" name="direccion" maxlength="202" required id="id_direccion" placeholder="Dirección"><br>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="labels">Provincia</label>
+                            <input type="text" class="textinput form-control" name="provincia" maxlength="202" required id="id_provincia" placeholder="Provincia">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label class="labels">Idiomas</label>
+                            <input type="text" class="textinput form-control" name="idiomas" maxlength="202" required id="id_idiomas" placeholder="Idiomas">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="labels">Nivel</label>
+                            <select name="nivel_idioma" class="select form-select" required="" id="id_nivel_idioma"> 
+                                <option value="" selected="">---------</option> 
+                                <option value="1">Básico</option> 
+                                <option value="2">Intermedio</option> 
+                                <option value="3">Competente</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="labels"></label>
+                            <input type="text" class="textinput form-control" name="idiomas1" maxlength="202" required id="id_idiomas" placeholder="Idiomas">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="labels"></label>
+                            <select name="nivel_idioma" class="select form-select" required="" id="id_nivel_idioma"> 
+                                <option value="" selected="">---------</option> 
+                                <option value="1">Básico</option> 
+                                <option value="2">Intermedio</option> 
+                                <option value="3">Competente</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="labels"></label>
+                            <input type="text" class="textinput form-control" name="idiomas2" maxlength="202" required id="id_idiomas" placeholder="Idiomas">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="labels"></label>
+                            <select name="nivel_idioma" class="select form-select" required="" id="id_nivel_idioma"> 
+                                <option value="" selected="">---------</option> 
+                                <option value="1">Básico</option> 
+                                <option value="2">Intermedio</option> 
+                                <option value="3">Competente</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-3 py-5">
+                <div class="mt-5 text-center">
+                    <br><br>
+                    <div class="text-center">
+                        <input type="file" required value="input" class="btn btn-outline-success btn-sm file-upload" style="background: #24527A; border: none;" >
+                    </div><br>
+                    <button class="btn btn-primary profile-button" type="submit" style="background: #24527A; border: none;">Editar</button>
+                    &nbsp;
+                    <button class="btn btn-primary profile-button" id="btnGuardar" type="submit" style="background: #24527A; border: none;">Guardar</button>
+
+                </div>
+
+                <!--<div class="col-md-12">
+                    <label class="labels">Experience in Designing</label>
+                    <input type="text" class="form-control" placeholder="experience" value="">
+                </div>
+                 <br>
+                <div class="col-md-12">
+                    <label class="labels">Additional Details</label>
+                    <input type="text" class="form-control" placeholder="additional details" value="">
+                </div>-->
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<!--Imprimo Mensaje
+{{ messages }}
+<table id="persona">
+</table>-->
+
+<script src="{% static 'seapp\js/bootstrap.bundle.min.js'%}" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<script src="{% static 'seapp\js/bootstrap.min.js'%}"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="{% static 'seapp\js/persona.js' %}" ></script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+{% endblock  %}
+    
